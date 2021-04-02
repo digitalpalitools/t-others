@@ -22,7 +22,7 @@ Get-ChildItem -Directory
     | ForEach-Object {
         $fileName = $_.Name
         "<li><a href='/$root/$name/$fileName'>$fileName</a></li>" | Out-File -FilePath $thisIndexHtml -Encoding utf8BOM -Append        
-        Copy-Item $_.FullName "../$root/$name"
+        Get-Content $_.FullName | Out-File -FilePath "../$root/$name/$($_.Name)" -Encoding utf8BOM
     }
     "</ul>" | Out-File -FilePath $thisIndexHtml -Encoding utf8BOM -Append
 }
